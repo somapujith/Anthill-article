@@ -113,7 +113,7 @@ export default function Hero() {
         className="relative z-10 rounded-3xl p-[1px] overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-ant-red/20 via-transparent to-ant-red/20 opacity-50" />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-0 relative bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden divide-x divide-y md:divide-y-0 divide-white/5 shadow-2xl">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-0 relative bg-[#000000]/80 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden divide-x divide-y md:divide-y-0 divide-white/5 shadow-2xl">
           {[
             { value: '10', label: 'Years Covered' },
             { value: '40+', label: 'AI Milestones' },

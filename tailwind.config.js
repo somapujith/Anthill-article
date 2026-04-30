@@ -7,7 +7,7 @@ export default {
     extend: {
       colors: {
         ant: {
-          black: '#080808',
+          black: '#000000',
           red: '#e5232c',
           redDark: '#b81b23',
           cyan: '#00f0ff',

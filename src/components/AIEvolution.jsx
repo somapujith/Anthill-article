@@ -50,7 +50,7 @@ export default function AIEvolution() {
 
         <div className="relative rounded-3xl p-[1px] overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-r from-ant-red/30 via-transparent to-ant-red/10 opacity-30 group-hover:opacity-60 transition-opacity duration-1000 animate-pulse" />
-          <div className="grid md:grid-cols-12 gap-0 relative bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden shadow-2xl min-h-[520px]">
+          <div className="grid md:grid-cols-12 gap-0 relative bg-[#000000]/90 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden shadow-2xl min-h-[520px]">
             {/* Glowing orbital dot effect */}
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-ant-red/10 blur-[100px] pointer-events-none" />
 

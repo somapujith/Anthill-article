@@ -53,7 +53,7 @@ export default function HumanIntervention() {
               className={`text-left p-10 transition-all duration-500 group border rounded-2xl relative overflow-hidden ${
                 active === i 
                   ? 'bg-gradient-to-br from-ant-red/20 to-black border-ant-red/50 shadow-[0_0_30px_rgba(229,35,44,0.15)]' 
-                  : 'bg-[#0a0a0a] border-white/5 hover:border-white/10 hover:bg-[#111]'
+                  : 'bg-[#000000] border-white/5 hover:border-white/10 hover:bg-[#111]'
               }`}
             >
               {/* Background glow for active state */}
@@ -125,7 +125,7 @@ export default function HumanIntervention() {
           <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent group-hover:from-ant-red/30 transition-all duration-300" />
           <motion.div
             animate={{ rotate: showComparison ? 45 : 0 }}
-            className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-[#0a0a0a] text-ant-red text-2xl group-hover:border-ant-red/50 group-hover:shadow-[0_0_15px_rgba(229,35,44,0.3)] transition-all duration-300"
+            className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-[#000000] text-ant-red text-2xl group-hover:border-ant-red/50 group-hover:shadow-[0_0_15px_rgba(229,35,44,0.3)] transition-all duration-300"
           >
             +
           </motion.div>
@@ -139,7 +139,7 @@ export default function HumanIntervention() {
               exit={{ opacity: 0, height: 0 }}
               className="overflow-hidden"
             >
-              <div className="rounded-2xl border border-white/5 overflow-hidden shadow-2xl bg-[#0a0a0a]/50 backdrop-blur-xl">
+              <div className="rounded-2xl border border-white/5 overflow-hidden shadow-2xl bg-[#000000]/50 backdrop-blur-xl">
                 <div className="grid md:grid-cols-12 bg-black/40 border-b border-white/5">
                   <div className="md:col-span-4 p-6">
                     <p className="text-ant-muted text-[10px] font-bold tracking-[0.3em] uppercase">Dimension</p>

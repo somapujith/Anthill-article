@@ -30,7 +30,7 @@ export default function Impact() {
         <SectionHeader index="06" title="Impact & Risks" subtitle="The Dual Nature\nof AI" description="Tremendous benefits and serious risks exist in the same system." />
 
         {/* toggle */}
-        <div className="flex gap-2 p-1.5 bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 rounded-full mb-16 w-fit shadow-xl relative z-10">
+        <div className="flex gap-2 p-1.5 bg-[#000000]/80 backdrop-blur-xl border border-white/10 rounded-full mb-16 w-fit shadow-xl relative z-10">
           <button
             onClick={() => setView('positive')}
             className={`px-8 py-3.5 font-bold text-sm transition-all duration-300 rounded-full relative overflow-hidden group ${view === 'positive' ? 'text-white shadow-[0_0_15px_rgba(255,255,255,0.2)]' : 'text-white/50 hover:text-white/90'}`}
@@ -71,7 +71,7 @@ export default function Impact() {
                 transition={{ delay: i * 0.05, duration: 0.4 }}
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
-                className={`bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 p-10 rounded-3xl transition-all duration-500 cursor-default relative overflow-hidden group shadow-lg ${hovered === i ? 'bg-white/[0.03] border-white/10 -translate-y-1 shadow-2xl' : ''}`}
+                className={`bg-[#000000]/80 backdrop-blur-xl border border-white/5 p-10 rounded-3xl transition-all duration-500 cursor-default relative overflow-hidden group shadow-lg ${hovered === i ? 'bg-white/[0.03] border-white/10 -translate-y-1 shadow-2xl' : ''}`}
               >
                 {/* Hover gradient overlay */}
                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${view === 'positive' ? 'from-white/5 to-transparent' : 'from-ant-red/10 to-transparent'}`} />
@@ -101,7 +101,7 @@ export default function Impact() {
           className="mt-24 relative"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-ant-red/10 to-transparent rounded-3xl blur-xl" />
-          <div className="relative border-l-4 border-ant-red bg-gradient-to-r from-[#0a0a0a]/90 to-transparent backdrop-blur-md rounded-r-3xl p-10 md:p-14">
+          <div className="relative border-l-4 border-ant-red bg-gradient-to-r from-[#000000]/90 to-transparent backdrop-blur-md rounded-r-3xl p-10 md:p-14">
             <p className="text-2xl md:text-4xl font-bold leading-tight max-w-4xl text-white drop-shadow-md">
               "The outcome isn't determined by AI itself — it's determined by the choices humanity makes
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-ant-red to-white ml-2">in the next five years.</span>"

@@ -26,7 +26,7 @@ export default function FuturePredictions() {
         <SectionHeader index="05" title="Future Predictions" subtitle="What Comes Next" description="Key milestones projected between 2025 and 2030." />
 
         {/* milestone table */}
-        <div className="rounded-3xl border border-white/5 bg-[#0a0a0a]/80 backdrop-blur-xl mb-24 overflow-hidden shadow-2xl relative">
+        <div className="rounded-3xl border border-white/5 bg-[#000000]/80 backdrop-blur-xl mb-24 overflow-hidden shadow-2xl relative">
           <div className="absolute top-0 right-0 w-64 h-64 bg-ant-red/10 blur-[100px] pointer-events-none" />
           
           {/* header */}
@@ -93,7 +93,7 @@ export default function FuturePredictions() {
         
         <div className="relative rounded-3xl p-[1px] mb-8 group overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-ant-red/30 via-transparent to-ant-red/30 opacity-40 group-hover:opacity-80 transition-opacity duration-1000 animate-pulse" />
-          <div className="relative bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative bg-[#000000]/90 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
             <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5">
               {scenarios.map((s) => (
                 <button

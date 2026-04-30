@@ -32,7 +32,7 @@ const adoptionData = [
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null
   return (
-    <div className="bg-[#0a0a0a] border border-[#222] p-4 text-xs font-semibold">
+    <div className="bg-[#000000] border border-[#222] p-4 text-xs font-semibold">
       <p className="text-[#888] mb-3 tracking-widest uppercase text-[10px]">{label}</p>
       {payload.map((entry, i) => (
         <p key={i} style={{ color: entry.color }} className="mb-1">{entry.name}: <span className="text-white">{entry.value}</span></p>
@@ -53,7 +53,7 @@ export default function DataViz() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-3xl p-8 relative overflow-hidden group shadow-xl"
+            className="bg-[#000000]/80 backdrop-blur-xl border border-white/5 rounded-3xl p-8 relative overflow-hidden group shadow-xl"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-ant-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="absolute top-0 right-0 w-32 h-32 bg-ant-red/10 blur-[50px] pointer-events-none" />
@@ -93,7 +93,7 @@ export default function DataViz() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             viewport={{ once: true }}
-            className="bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-3xl p-8 relative overflow-hidden group shadow-xl"
+            className="bg-[#000000]/80 backdrop-blur-xl border border-white/5 rounded-3xl p-8 relative overflow-hidden group shadow-xl"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 blur-[50px] pointer-events-none" />
@@ -135,7 +135,7 @@ export default function DataViz() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-3xl p-8 relative overflow-hidden group shadow-xl"
+            className="bg-[#000000]/80 backdrop-blur-xl border border-white/5 rounded-3xl p-8 relative overflow-hidden group shadow-xl"
           >
             <div className="absolute inset-0 bg-gradient-to-bl from-ant-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-ant-red/5 blur-[60px] pointer-events-none" />

@@ -89,7 +89,7 @@ export default function Timeline() {
             >
               <div className="relative rounded-3xl overflow-hidden p-[1px] group">
                 <div className="absolute inset-0 bg-gradient-to-br from-ant-red/30 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
-                <div className="grid md:grid-cols-12 gap-0 relative bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+                <div className="grid md:grid-cols-12 gap-0 relative bg-[#000000]/80 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
                   {/* Glowing orbital dot effect */}
                   <div className="absolute top-0 left-0 w-64 h-64 bg-ant-red/10 blur-[100px] pointer-events-none" />
                   
@@ -105,13 +105,13 @@ export default function Timeline() {
                       <div className="flex gap-3">
                         <button
                           onClick={() => setSelected(Math.max(2020, selected - 1))}
-                          className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-[#0a0a0a] text-ant-muted text-sm hover:border-ant-red/50 hover:text-ant-red hover:shadow-[0_0_15px_rgba(229,35,44,0.3)] transition-all duration-300"
+                          className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-[#000000] text-ant-muted text-sm hover:border-ant-red/50 hover:text-ant-red hover:shadow-[0_0_15px_rgba(229,35,44,0.3)] transition-all duration-300"
                         >
                           ←
                         </button>
                         <button
                           onClick={() => setSelected(Math.min(2030, selected + 1))}
-                          className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-[#0a0a0a] text-ant-muted text-sm hover:border-ant-red/50 hover:text-ant-red hover:shadow-[0_0_15px_rgba(229,35,44,0.3)] transition-all duration-300"
+                          className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-[#000000] text-ant-muted text-sm hover:border-ant-red/50 hover:text-ant-red hover:shadow-[0_0_15px_rgba(229,35,44,0.3)] transition-all duration-300"
                         >
                           →
                         </button>
