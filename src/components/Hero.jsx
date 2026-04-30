@@ -1,14 +1,33 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { useState, useEffect } from 'react'
 
 const letters = "AI Evolution &\nHuman Intervention".split('')
 
 export default function Hero() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const { scrollY } = useScroll()
   
   // Parallax on scroll
   const y1 = useTransform(scrollY, [0, 1000], [0, 200])
   const y2 = useTransform(scrollY, [0, 1000], [0, -100])
   const opacity = useTransform(scrollY, [0, 500], [1, 0])
+
+  // Mouse tracking parallax
+  const springConfig = { damping: 25, stiffness: 150 }
+  const mouseX = useSpring(0, springConfig)
+  const mouseY = useSpring(0, springConfig)
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const { innerWidth, innerHeight } = window
+      const x = (e.clientX / innerWidth - 0.5) * 40
+      const y = (e.clientY / innerHeight - 0.5) * 40
+      mouseX.set(x)
+      mouseY.set(y)
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [mouseX, mouseY])
 
   return (
     <section className="min-h-screen bg-ant-black flex flex-col justify-between px-8 md:px-16 pt-10 pb-12 relative overflow-hidden">
@@ -60,15 +79,15 @@ export default function Hero() {
 
         <motion.h1 
           className="text-[clamp(3rem,9vw,8rem)] font-bold leading-[0.92] tracking-tight mb-10 relative perspective-1000"
+          style={{ x: mouseX, y: mouseY }}
         >
           {["AI Evolution", "&", "Human", "Intervention"].map((word, wi) => (
             <motion.span
               key={wi}
-              data-text={word}
               initial={{ opacity: 0, y: 40, rotateX: -20 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
               transition={{ delay: 0.4 + wi * 0.12, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className={`block glitch-hover ${word === '&' ? 'text-transparent bg-clip-text bg-gradient-to-r from-ant-red to-ant-cyan drop-shadow-[0_0_20px_rgba(229,35,44,0.3)]' : 'text-white drop-shadow-lg'}`}
+              className={`block ${word === '&' ? 'text-transparent bg-clip-text bg-gradient-to-r from-ant-red to-ant-cyan drop-shadow-[0_0_20px_rgba(229,35,44,0.3)]' : 'text-white drop-shadow-lg'}`}
             >
               {word}
             </motion.span>
