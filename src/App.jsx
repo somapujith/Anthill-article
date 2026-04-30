@@ -8,9 +8,14 @@ import Impact from './components/Impact'
 import Interactive from './components/Interactive'
 import Footer from './components/Footer'
 
+import ScrollProgress from './components/ScrollProgress'
+import NoiseBackground from './components/NoiseBackground'
+
 export default function App() {
   return (
     <div className="bg-ant-black text-white font-archivo">
+      <NoiseBackground />
+      <ScrollProgress />
       <Hero />
       <Timeline />
       <AIEvolution />

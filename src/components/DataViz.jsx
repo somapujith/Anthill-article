@@ -72,15 +72,15 @@ export default function DataViz() {
                   <AreaChart data={investmentData}>
                     <defs>
                       <linearGradient id="fundingGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#e5232c" stopOpacity={0.5} />
-                        <stop offset="100%" stopColor="#e5232c" stopOpacity={0} />
+                        <stop offset="0%" stopColor="#00f0ff" stopOpacity={0.5} />
+                        <stop offset="100%" stopColor="#00f0ff" stopOpacity={0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="1 6" stroke="rgba(255,255,255,0.05)" vertical={false} />
                     <XAxis dataKey="year" stroke="transparent" tick={{ fill: 'rgba(255,255,255,0.3)', fontFamily: 'Archivo', fontWeight: 600, fontSize: 10 }} tickLine={false} />
                     <YAxis stroke="transparent" tick={{ fill: 'rgba(255,255,255,0.3)', fontFamily: 'Archivo', fontWeight: 600, fontSize: 10 }} tickLine={false} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Area type="monotone" dataKey="funding" stroke="#e5232c" strokeWidth={3} fill="url(#fundingGrad)" name="Funding ($B)" dot={{ fill: '#e5232c', r: 0 }} activeDot={{ r: 6, fill: '#fff', stroke="#e5232c", strokeWidth: 2 }} />
+                    <Area type="monotone" dataKey="funding" stroke="#00f0ff" strokeWidth={3} fill="url(#fundingGrad)" name="Funding ($B)" dot={{ fill: '#00f0ff', r: 0 }} activeDot={{ r: 6, fill: '#fff', stroke="#00f0ff", strokeWidth: 2 }} />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
@@ -148,7 +148,7 @@ export default function DataViz() {
               <div className="flex gap-3 items-center mb-6">
                 {['2022', '2023', '2024'].map((y, i) => (
                   <div key={y} className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full" style={{ background: ['rgba(255,255,255,0.1)', 'rgba(255,255,255,0.3)', '#e5232c'][i] }} />
+                    <div className="w-2 h-2 rounded-full" style={{ background: ['rgba(255,255,255,0.1)', 'rgba(0,240,255,0.5)', '#e5232c'][i] }} />
                     <span className="text-white/40 text-[10px] uppercase font-bold tracking-wider">{y}</span>
                   </div>
                 ))}
@@ -161,7 +161,7 @@ export default function DataViz() {
                     <YAxis stroke="transparent" tick={{ fill: 'rgba(255,255,255,0.3)', fontFamily: 'Archivo', fontWeight: 600, fontSize: 10 }} tickLine={false} width={30} />
                     <Tooltip content={<CustomTooltip />} />
                     <Bar dataKey="2022" fill="rgba(255,255,255,0.1)" name="2022" radius={[3, 3, 0, 0]} />
-                    <Bar dataKey="2023" fill="rgba(255,255,255,0.3)" name="2023" radius={[3, 3, 0, 0]} />
+                    <Bar dataKey="2023" fill="rgba(0,240,255,0.5)" name="2023" radius={[3, 3, 0, 0]} />
                     <Bar dataKey="2024" fill="#e5232c" name="2024" radius={[3, 3, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>

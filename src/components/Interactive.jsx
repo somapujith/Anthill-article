@@ -112,12 +112,13 @@ export default function Interactive() {
                     exit={{ opacity: 0 }}
                     className="h-full flex flex-col justify-center items-center text-center min-h-[400px] relative z-10"
                   >
-                    <div className="p-8 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-sm shadow-xl">
-                      <div className="flex gap-2 items-end h-12">
+                    <div className="p-8 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-sm shadow-xl relative overflow-hidden">
+                      <div className="absolute inset-0 bg-ant-cyan/10 animate-pulse mix-blend-overlay" />
+                      <div className="flex gap-2 items-end h-12 relative z-10">
                         {[1, 2, 3, 4, 5].map(i => (
                           <div 
                             key={i} 
-                            className={`w-3 rounded-t-sm transition-all duration-300 ${i <= Math.ceil(level / 20) ? 'bg-gradient-to-t from-ant-red/50 to-ant-red shadow-[0_0_10px_rgba(229,35,44,0.5)]' : 'bg-white/10'}`}
+                            className={`w-3 rounded-t-sm transition-all duration-300 ${i <= Math.ceil(level / 20) ? 'bg-gradient-to-t from-ant-cyan/50 to-ant-cyan shadow-[0_0_10px_rgba(0,240,255,0.5)]' : 'bg-white/10'}`}
                             style={{ height: `${i * 20}%` }}
                           />
                         ))}
@@ -129,17 +130,18 @@ export default function Interactive() {
                 ) : (
                   <motion.div
                     key="result"
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -16 }}
+                    initial={{ opacity: 0, filter: 'blur(10px) hue-rotate(90deg)' }}
+                    animate={{ opacity: 1, filter: 'blur(0px) hue-rotate(0deg)' }}
+                    exit={{ opacity: 0, filter: 'blur(10px) hue-rotate(-90deg)' }}
+                    transition={{ duration: 0.6, ease: "circOut" }}
                     className="min-h-[400px] relative z-10"
                   >
                     <div className="flex items-start justify-between mb-12">
                       <div>
-                        <p className="text-[10px] font-bold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-ant-muted to-white/30 uppercase mb-3">Projected Scenario</p>
+                        <p className="text-[10px] font-bold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-ant-cyan to-white/30 uppercase mb-3">Projected Scenario</p>
                         <h3 className="text-3xl md:text-5xl font-bold text-white drop-shadow-md leading-tight">{impact.title}</h3>
                       </div>
-                      <span className={`text-[10px] font-bold tracking-[0.2em] uppercase rounded-full px-5 py-2.5 shadow-lg backdrop-blur-md border ${impact.tagRed ? 'border-ant-red/50 bg-ant-red/10 text-ant-red' : 'border-white/20 bg-white/5 text-white'}`}>
+                      <span className={`text-[10px] font-bold tracking-[0.2em] uppercase rounded-full px-5 py-2.5 shadow-lg backdrop-blur-md border ${impact.tagRed ? 'border-ant-red/50 bg-ant-red/10 text-ant-red shadow-[0_0_15px_rgba(229,35,44,0.3)]' : 'border-ant-cyan/50 bg-ant-cyan/10 text-ant-cyan shadow-[0_0_15px_rgba(0,240,255,0.3)]'}`}>
                         {impact.tag}
                       </span>
                     </div>
@@ -148,12 +150,12 @@ export default function Interactive() {
                       {impact.outcomes.map((outcome, i) => (
                         <motion.li
                           key={i}
-                          initial={{ opacity: 0, x: -16 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: i * 0.08 }}
-                          className={`flex gap-5 font-bold ${i === impact.outcomes.length - 1 ? 'text-ant-red mt-10 pt-8 border-t border-white/10 text-xl' : 'text-white/90 text-lg'}`}
+                          initial={{ opacity: 0, x: -20, color: '#00f0ff' }}
+                          animate={{ opacity: 1, x: 0, color: i === impact.outcomes.length - 1 ? (impact.tagRed ? '#e5232c' : '#00f0ff') : '#e6e6e6' }}
+                          transition={{ delay: 0.2 + i * 0.1, duration: 0.4 }}
+                          className={`flex gap-5 font-bold ${i === impact.outcomes.length - 1 ? 'mt-10 pt-8 border-t border-white/10 text-xl drop-shadow-md' : 'text-lg'}`}
                         >
-                          <span className="text-ant-red shrink-0 mt-0.5">→</span>
+                          <span className={`shrink-0 mt-0.5 ${impact.tagRed ? 'text-ant-red' : 'text-ant-cyan'}`}>→</span>
                           {outcome}
                         </motion.li>
                       ))}

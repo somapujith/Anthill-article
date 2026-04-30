@@ -31,33 +31,32 @@ export default function Timeline() {
         <SectionHeader index="01" title="Timeline" subtitle="A Decade of Progress" description="Select a year — explore what changed in AI and how humanity responded." />
 
         {/* horizontal year scrubber */}
-        <div className="relative mb-20">
+        <div className="relative mb-20 py-4">
           {/* progress track */}
-          <div className="absolute top-1/2 left-0 w-full h-px bg-ant-border -translate-y-1/2" />
+          <div className="absolute top-1/2 left-0 w-full h-1 bg-white/5 -translate-y-1/2 rounded-full overflow-hidden" />
           <motion.div
-            className="absolute top-1/2 left-0 h-px bg-ant-red -translate-y-1/2 origin-left"
+            className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-ant-red via-ant-cyan to-ant-red -translate-y-1/2 rounded-full shadow-[0_0_15px_rgba(229,35,44,0.6)] origin-left"
             animate={{ width: `${(idx / (timelineData.length - 1)) * 100}%` }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           />
 
-          <div className="relative flex justify-between items-center">
+          <div className="relative flex justify-between items-center z-10">
             {timelineData.map((item, i) => (
               <button
                 key={item.year}
                 onClick={() => setSelected(item.year)}
-                className="flex flex-col items-center gap-2 group"
+                className="flex flex-col items-center gap-4 group relative"
               >
                 <motion.div
                   animate={{
-                    width: selected === item.year ? 12 : 8,
-                    height: selected === item.year ? 12 : 8,
-                    backgroundColor: i <= idx ? '#e5232c' : '#1e1e1e',
-                    borderColor: selected === item.year ? '#e5232c' : i <= idx ? '#e5232c' : '#333',
+                    width: selected === item.year ? 20 : 12,
+                    height: selected === item.year ? 20 : 12,
+                    backgroundColor: selected === item.year ? '#fff' : i <= idx ? '#e5232c' : '#1e1e1e',
                   }}
-                  transition={{ duration: 0.2 }}
-                  className="rounded-full border-2 flex-shrink-0"
+                  transition={{ duration: 0.3 }}
+                  className={`rounded-full flex-shrink-0 transition-shadow duration-300 ${selected === item.year ? 'shadow-[0_0_20px_#fff]' : i <= idx ? 'shadow-[0_0_10px_#e5232c]' : 'group-hover:bg-white/20'}`}
                 />
-                <span className={`text-[10px] font-semibold transition-colors hidden md:block ${selected === item.year ? 'text-ant-red' : 'text-ant-border group-hover:text-ant-muted'}`}>
+                <span className={`absolute top-8 text-[11px] font-bold tracking-widest transition-all duration-300 hidden md:block ${selected === item.year ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] scale-110' : i <= idx ? 'text-ant-red' : 'text-white/30 group-hover:text-white/70'}`}>
                   {item.year}
                 </span>
               </button>

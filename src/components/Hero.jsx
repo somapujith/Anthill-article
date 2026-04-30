@@ -1,15 +1,50 @@
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { useState, useEffect } from 'react'
 
 const letters = "AI Evolution &\nHuman Intervention".split('')
 
 export default function Hero() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const { scrollY } = useScroll()
+  
+  // Parallax on scroll
+  const y1 = useTransform(scrollY, [0, 1000], [0, 200])
+  const y2 = useTransform(scrollY, [0, 1000], [0, -100])
+  const opacity = useTransform(scrollY, [0, 500], [1, 0])
+
+  // Mouse tracking parallax
+  const springConfig = { damping: 25, stiffness: 150 }
+  const mouseX = useSpring(0, springConfig)
+  const mouseY = useSpring(0, springConfig)
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const { innerWidth, innerHeight } = window
+      const x = (e.clientX / innerWidth - 0.5) * 40
+      const y = (e.clientY / innerHeight - 0.5) * 40
+      mouseX.set(x)
+      mouseY.set(y)
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [mouseX, mouseY])
+
   return (
     <section className="min-h-screen bg-ant-black flex flex-col justify-between px-8 md:px-16 pt-10 pb-12 relative overflow-hidden">
 
-      {/* grid lines */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-[33%] w-px h-full bg-ant-border/50" />
-        <div className="absolute top-0 right-[66%] w-px h-full bg-ant-border/50" />
+      {/* dynamic grid lines */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]" />
+        <motion.div 
+          className="absolute top-0 right-[33%] w-[2px] h-full bg-gradient-to-b from-transparent via-ant-cyan to-transparent opacity-50"
+          animate={{ y: ['-100%', '100%'] }}
+          transition={{ duration: 7, repeat: Infinity, ease: 'linear' }}
+        />
+        <motion.div 
+          className="absolute top-0 right-[66%] w-[2px] h-full bg-gradient-to-b from-transparent via-ant-red to-transparent opacity-50"
+          animate={{ y: ['-100%', '100%'] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'linear', delay: 2 }}
+        />
       </div>
 
       {/* top bar */}
@@ -31,41 +66,44 @@ export default function Hero() {
       </motion.div>
 
       {/* main title */}
-      <div className="flex-1 flex flex-col justify-center relative z-10 py-16">
+      <motion.div style={{ y: y1, opacity }} className="flex-1 flex flex-col justify-center relative z-10 py-16">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-[11px] font-semibold tracking-[0.3em] text-ant-red uppercase mb-10 flex items-center gap-4"
+          className="text-[11px] font-bold tracking-[0.3em] text-ant-cyan uppercase mb-10 flex items-center gap-4 drop-shadow-[0_0_8px_rgba(0,240,255,0.5)]"
         >
-          <span className="w-8 h-px bg-ant-red inline-block" />
+          <span className="w-8 h-px bg-ant-cyan inline-block shadow-[0_0_10px_#00f0ff]" />
           2020 — 2030
         </motion.div>
 
-        <h1 className="text-[clamp(3rem,9vw,8rem)] font-semibold leading-[0.92] tracking-tight mb-10">
+        <motion.h1 
+          className="text-[clamp(3rem,9vw,8rem)] font-bold leading-[0.92] tracking-tight mb-10 relative perspective-1000"
+          style={{ x: mouseX, y: mouseY }}
+        >
           {["AI Evolution", "&", "Human", "Intervention"].map((word, wi) => (
             <motion.span
               key={wi}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 + wi * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className={`block ${word === '&' ? 'text-ant-red' : ''}`}
+              initial={{ opacity: 0, y: 40, rotateX: -20 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ delay: 0.4 + wi * 0.12, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className={`block ${word === '&' ? 'text-transparent bg-clip-text bg-gradient-to-r from-ant-red to-ant-cyan drop-shadow-[0_0_20px_rgba(229,35,44,0.3)]' : 'text-white drop-shadow-lg'}`}
             >
               {word}
             </motion.span>
           ))}
-        </h1>
+        </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.7 }}
-          className="text-ant-muted text-lg font-semibold max-w-xl leading-relaxed"
+          className="text-white/60 text-lg font-medium max-w-xl leading-relaxed"
         >
           A decade that redefined humanity's relationship with artificial intelligence —
           breakthroughs, regulations, risks, and the uncertain road ahead.
         </motion.p>
-      </div>
+      </motion.div>
 
       {/* bottom stats */}
       <motion.div
