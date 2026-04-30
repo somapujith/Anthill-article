@@ -80,7 +80,7 @@ export default function DataViz() {
                     <XAxis dataKey="year" stroke="transparent" tick={{ fill: 'rgba(255,255,255,0.3)', fontFamily: 'Archivo', fontWeight: 600, fontSize: 10 }} tickLine={false} />
                     <YAxis stroke="transparent" tick={{ fill: 'rgba(255,255,255,0.3)', fontFamily: 'Archivo', fontWeight: 600, fontSize: 10 }} tickLine={false} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Area type="monotone" dataKey="funding" stroke="#00f0ff" strokeWidth={3} fill="url(#fundingGrad)" name="Funding ($B)" dot={{ fill: '#00f0ff', r: 0 }} activeDot={{ r: 6, fill: '#fff', stroke="#00f0ff", strokeWidth: 2 }} />
+                    <Area type="monotone" dataKey="funding" stroke="#00f0ff" strokeWidth={3} fill="url(#fundingGrad)" name="Funding ($B)" dot={{ fill: '#00f0ff', r: 0 }} activeDot={{ r: 6, fill: '#fff', stroke: '#00f0ff', strokeWidth: 2 }} />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
