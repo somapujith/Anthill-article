@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 
 const impacts = {
   positive: [
@@ -28,6 +28,8 @@ export default function Impact() {
     <section id="impact" className="bg-ant-black">
       <div className="px-8 md:px-16 pt-24 pb-16">
         <SectionHeader index="06" title="Impact & Risks" subtitle={"The Dual Nature\nof AI"} description="Tremendous benefits and serious risks exist in the same system." />
+
+        <ScrollRevealQuote />
 
         {/* toggle */}
         <div className="flex gap-2 p-1.5 bg-[#000000]/80 backdrop-blur-xl border border-white/10 rounded-full mb-16 w-fit shadow-xl relative z-10">
@@ -134,6 +136,35 @@ function SectionHeader({ index, title, subtitle, description }) {
         {subtitle}
       </motion.h2>
       {description && <p className="text-ant-muted font-semibold text-lg">{description}</p>}
+    </div>
+  )
+}
+
+function ScrollRevealQuote() {
+  const container = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start center", "end center"]
+  })
+
+  const words = "The greatest challenge of our decade is not just building artificial intelligence, but ensuring it remains fundamentally aligned with human flourishing and societal well-being.".split(" ")
+
+  return (
+    <div ref={container} className="py-24 mb-16 border-y border-white/5 bg-gradient-to-r from-transparent via-white/[0.01] to-transparent">
+      <p className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] max-w-5xl flex flex-wrap gap-x-3 gap-y-2 lg:gap-x-4 lg:gap-y-4">
+        {words.map((word, i) => {
+          const start = i / words.length
+          const end = start + (1 / words.length)
+          const opacity = useTransform(scrollYProgress, [start, end], [0.15, 1])
+          const color = useTransform(scrollYProgress, [start, end], ["#ffffff33", "#ffffff"])
+          
+          return (
+            <motion.span key={i} style={{ opacity, color }}>
+              {word}
+            </motion.span>
+          )
+        })}
+      </p>
     </div>
   )
 }
