@@ -12,6 +12,8 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
 }
 
 body {
@@ -22,14 +24,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #000000;
-}
-::-webkit-scrollbar-thumb {
-  background: #e5232c;
-  border-radius: 2px;
+  display: none;
 }
 
 input[type='range'] {
