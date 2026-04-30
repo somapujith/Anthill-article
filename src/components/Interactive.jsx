@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { playGlitchSound, playHoverSound } from '../utils/audio'
 
 const getImpact = (level) => {
   if (level < 20) return { title: 'Uncontrolled Explosion', tag: 'Critical Risk', tagRed: true, outcomes: ['Rapid, unpredictable AI advancement', 'High probability of misalignment events', 'Massive unmanaged economic disruption', 'Surveillance and misuse maximized', 'AGI emergence possible by 2028', 'Outcome: uncertain, potentially catastrophic'] }

@@ -1,6 +1,5 @@
-import { useState, useRef, useEffect } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { playHoverSound, playClickSound } from '../utils/audio'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const timelineData = [
   { year: 2020, title: 'GPT-3 Released', color: '#333', breakthroughs: ['OpenAI releases GPT-3 — 175B parameters', 'Few-shot learning emerges as paradigm', 'DALL-E image generation prototype'], intervention: ['No major AI regulation frameworks', 'Early AI ethics discussions begin'] },
@@ -16,84 +15,23 @@ const timelineData = [
   { year: 2030, title: 'New Era', color: '#e5232c', breakthroughs: ['AGI possibility high', 'Human civilization transforms', 'New intelligence paradigm begins'], intervention: ['Humanity-AI alignment critical', 'Global AI governance essential', 'Decisions made now echo for generations'] }
 ]
 
-function TimelinePanel({ item, onVisible }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { margin: "-50% 0px -50% 0px" })
-  
-  useEffect(() => {
-    if (isInView) onVisible(item.year)
-  }, [isInView, item.year, onVisible])
-
-  return (
-    <div ref={ref} id={`year-${item.year}`} className="min-h-screen flex flex-col justify-center py-20 relative group">
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[15vw] font-semibold text-white/[0.015] select-none pointer-events-none leading-none pr-8">
-        {item.year}
-      </div>
-      <div className="relative rounded-3xl overflow-hidden p-[1px] group z-10 max-w-6xl mx-auto w-full">
-        <div className="absolute inset-0 bg-gradient-to-br from-ant-red/30 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
-        <div className="grid md:grid-cols-12 gap-0 relative bg-[#000000]/80 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
-          {/* Glowing orbital dot effect */}
-          <div className="absolute top-0 left-0 w-64 h-64 bg-ant-red/10 blur-[100px] pointer-events-none" />
-          
-          {/* year column */}
-          <div className="md:col-span-3 p-10 border-b md:border-b-0 md:border-r border-white/5 flex flex-col justify-between relative z-10"
-            style={{ background: `linear-gradient(135deg, rgba(0,0,0,0) 0%, ${item.color}11 100%)` }}
-          >
-            <div>
-              <p className="text-[clamp(4rem,8vw,6rem)] font-bold text-transparent bg-clip-text bg-gradient-to-b from-ant-red to-ant-red/40 leading-none mb-4 drop-shadow-[0_0_15px_rgba(229,35,44,0.3)]">{item.year}</p>
-              <p className="text-xl font-semibold text-white/90">{item.title}</p>
-            </div>
-          </div>
-
-          {/* breakthroughs */}
-          <div className="md:col-span-5 p-10 border-b md:border-b-0 md:border-r border-white/5 relative z-10 bg-black/20">
-            <p className="text-[10px] font-bold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-ant-muted to-white/30 uppercase mb-8">Breakthroughs</p>
-            <ul className="space-y-6">
-              {item.breakthroughs.map((bt, i) => (
-                <li key={i} className="flex gap-5 group/item cursor-default">
-                  <span className="text-ant-red font-bold shrink-0 mt-0.5 group-hover/item:text-white transition-colors duration-300">0{i + 1}</span>
-                  <span className="text-white/80 font-medium leading-snug group-hover/item:text-white transition-colors duration-300">{bt}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* intervention */}
-          <div className="md:col-span-4 p-10 relative z-10 bg-black/40">
-            <p className="text-[10px] font-bold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-ant-muted to-white/30 uppercase mb-8">Human Intervention</p>
-            <ul className="space-y-6">
-              {item.intervention.map((intv, i) => (
-                <li key={i} className="flex gap-5 group/item cursor-default">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/20 shrink-0 mt-2 group-hover/item:bg-ant-red transition-colors duration-300" />
-                  <span className="text-ant-muted font-medium leading-snug group-hover/item:text-white/80 transition-colors duration-300">{intv}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export default function Timeline() {
   const [selected, setSelected] = useState(2022)
+  const current = timelineData.find(d => d.year === selected)
   const idx = timelineData.findIndex(d => d.year === selected)
-
-  const scrollToYear = (year) => {
-    const el = document.getElementById(`year-${year}`)
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }
 
   return (
     <section id="timeline" className="bg-ant-black relative overflow-hidden">
-      <div className="px-8 md:px-16 pt-24 pb-8 relative z-20">
-        <SectionHeader index="01" title="Timeline" subtitle="A Decade of Progress" description="Scroll down to explore what changed in AI and how humanity responded." />
+      {/* large year watermark */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[20vw] font-semibold text-white/[0.02] select-none pointer-events-none leading-none pr-8">
+        {selected}
       </div>
 
-      {/* Sticky horizontal year scrubber */}
-      <div className="sticky top-0 z-50 bg-[#000000]/80 backdrop-blur-xl border-b border-white/5 px-8 md:px-16 py-6 shadow-2xl">
-        <div className="relative max-w-6xl mx-auto">
+      <div className="px-8 md:px-16 pt-24 pb-16 relative z-10">
+        <SectionHeader index="01" title="Timeline" subtitle="A Decade of Progress" description="Select a year — explore what changed in AI and how humanity responded." />
+
+        {/* horizontal year scrubber */}
+        <div className="relative mb-20 py-4">
           {/* progress track */}
           <div className="absolute top-1/2 left-0 w-full h-1 bg-white/5 -translate-y-1/2 rounded-full overflow-hidden" />
           <motion.div
@@ -106,8 +44,7 @@ export default function Timeline() {
             {timelineData.map((item, i) => (
               <button
                 key={item.year}
-                onClick={() => { playClickSound(); scrollToYear(item.year); }}
-                onMouseEnter={playHoverSound}
+                onClick={() => setSelected(item.year)}
                 className="flex flex-col items-center gap-4 group relative"
               >
                 <motion.div
@@ -126,13 +63,104 @@ export default function Timeline() {
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Content Panels mapped vertically */}
-      <div className="px-8 md:px-16 relative z-10 pb-32">
-        {timelineData.map(item => (
-          <TimelinePanel key={item.year} item={item} onVisible={setSelected} />
-        ))}
+        {/* mobile year pills */}
+        <div className="flex gap-2 overflow-x-auto pb-4 mb-12 md:hidden">
+          {timelineData.map((item) => (
+            <button
+              key={item.year}
+              onClick={() => setSelected(item.year)}
+              className={`flex-shrink-0 px-4 py-2 text-xs font-semibold border transition-colors ${selected === item.year ? 'bg-ant-red border-ant-red text-white' : 'border-ant-border text-ant-muted'}`}
+            >
+              {item.year}
+            </button>
+          ))}
+        </div>
+
+        {/* content panel */}
+        <AnimatePresence mode="wait">
+          {current && (
+            <motion.div
+              key={current.year}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -24 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="relative rounded-3xl overflow-hidden p-[1px] group">
+                <div className="absolute inset-0 bg-gradient-to-br from-ant-red/30 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
+                <div className="grid md:grid-cols-12 gap-0 relative bg-[#000000]/80 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+                  {/* Glowing orbital dot effect */}
+                  <div className="absolute top-0 left-0 w-64 h-64 bg-ant-red/10 blur-[100px] pointer-events-none" />
+                  
+                  {/* year column */}
+                  <div className="md:col-span-3 p-10 border-b md:border-b-0 md:border-r border-white/5 flex flex-col justify-between relative z-10"
+                    style={{ background: `linear-gradient(135deg, rgba(0,0,0,0) 0%, ${current.color}11 100%)` }}
+                  >
+                    <div>
+                      <p className="text-[clamp(4rem,8vw,6rem)] font-bold text-transparent bg-clip-text bg-gradient-to-b from-ant-red to-ant-red/40 leading-none mb-4 drop-shadow-[0_0_15px_rgba(229,35,44,0.3)]">{current.year}</p>
+                      <p className="text-xl font-semibold text-white/90">{current.title}</p>
+                    </div>
+                    <div className="mt-8 hidden md:block">
+                      <div className="flex gap-3">
+                        <button
+                          onClick={() => setSelected(Math.max(2020, selected - 1))}
+                          className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-[#000000] text-ant-muted text-sm hover:border-ant-red/50 hover:text-ant-red hover:shadow-[0_0_15px_rgba(229,35,44,0.3)] transition-all duration-300"
+                        >
+                          ←
+                        </button>
+                        <button
+                          onClick={() => setSelected(Math.min(2030, selected + 1))}
+                          className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-[#000000] text-ant-muted text-sm hover:border-ant-red/50 hover:text-ant-red hover:shadow-[0_0_15px_rgba(229,35,44,0.3)] transition-all duration-300"
+                        >
+                          →
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* breakthroughs */}
+                  <div className="md:col-span-5 p-10 border-b md:border-b-0 md:border-r border-white/5 relative z-10 bg-black/20">
+                    <p className="text-[10px] font-bold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-ant-muted to-white/30 uppercase mb-8">Breakthroughs</p>
+                    <ul className="space-y-6">
+                      {current.breakthroughs.map((item, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, x: -12 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.1 }}
+                          className="flex gap-5 group/item cursor-default"
+                        >
+                          <span className="text-ant-red font-bold shrink-0 mt-0.5 group-hover/item:text-white transition-colors duration-300">0{i + 1}</span>
+                          <span className="text-white/80 font-medium leading-snug group-hover/item:text-white transition-colors duration-300">{item}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* intervention */}
+                  <div className="md:col-span-4 p-10 relative z-10 bg-black/40">
+                    <p className="text-[10px] font-bold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-ant-muted to-white/30 uppercase mb-8">Human Intervention</p>
+                    <ul className="space-y-6">
+                      {current.intervention.map((item, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, x: -12 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.15 + i * 0.1 }}
+                          className="flex gap-5 group/item cursor-default"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-white/20 shrink-0 mt-2 group-hover/item:bg-ant-red transition-colors duration-300" />
+                          <span className="text-ant-muted font-medium leading-snug group-hover/item:text-white/80 transition-colors duration-300">{item}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   )

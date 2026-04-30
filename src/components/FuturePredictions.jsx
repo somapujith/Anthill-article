@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import DecryptText from './DecryptText'
 
 const predictions = [
   { year: 2025, title: 'Near-Human Reasoning', description: 'AI systems match expert-level reasoning in specialized domains. Bar exams, medical diagnosis, code review.', probability: 85, impact: 'High', impactColor: 'text-white' },
@@ -62,7 +61,7 @@ export default function FuturePredictions() {
                         exit={{ opacity: 0, height: 0 }}
                         className="text-white/60 text-sm font-medium mt-2 leading-relaxed relative z-10"
                       >
-                        <DecryptText text={pred.description} />
+                        {pred.description}
                       </motion.p>
                     )}
                   </AnimatePresence>
@@ -135,7 +134,7 @@ export default function FuturePredictions() {
                         className="flex gap-5 group/item cursor-default"
                       >
                         <span className="text-ant-red font-bold shrink-0 mt-0.5 group-hover/item:text-white transition-colors duration-300 text-lg">0{i + 1}</span>
-                        <DecryptText text={point} className="text-white/80 font-medium leading-snug group-hover/item:text-white transition-colors duration-300" />
+                        <span className="text-white/80 font-medium leading-snug group-hover/item:text-white transition-colors duration-300">{point}</span>
                       </motion.div>
                     ))}
                   </div>
