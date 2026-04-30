@@ -89,9 +89,21 @@ export default function Timeline() {
             >
               <div className="relative rounded-3xl overflow-hidden p-[1px] group">
                 <div className="absolute inset-0 bg-gradient-to-br from-ant-red/30 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
-                <div className="grid md:grid-cols-12 gap-0 relative bg-[#000000]/80 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+                <div className="grid md:grid-cols-12 gap-0 relative bg-[#000000] border border-white/5 rounded-3xl overflow-hidden shadow-2xl group/timeline">
+                  {/* Background Image with hover parallax/opacity */}
+                  <div className="absolute inset-0 z-0 overflow-hidden">
+                    <div className="absolute inset-0 bg-black/80 z-10 transition-opacity duration-700 group-hover/timeline:bg-black/60" />
+                    <motion.img 
+                      src="/images/timeline_bg.png" 
+                      className="w-full h-full object-cover mix-blend-luminosity opacity-20 group-hover/timeline:opacity-40 transition-all duration-700" 
+                      initial={{ scale: 1.05 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.8 }}
+                    />
+                  </div>
+
                   {/* Glowing orbital dot effect */}
-                  <div className="absolute top-0 left-0 w-64 h-64 bg-ant-red/10 blur-[100px] pointer-events-none" />
+                  <div className="absolute top-0 left-0 w-64 h-64 bg-ant-red/10 blur-[100px] pointer-events-none z-0" />
                   
                   {/* year column */}
                   <div className="md:col-span-3 p-10 border-b md:border-b-0 md:border-r border-white/5 flex flex-col justify-between relative z-10"

@@ -32,8 +32,17 @@ export default function Hero() {
   return (
     <section className="min-h-screen bg-ant-black flex flex-col justify-between px-8 md:px-16 pt-10 pb-12 relative overflow-hidden">
 
+      {/* Background Image */}
+      <motion.div 
+        style={{ y: y2, opacity }}
+        className="absolute -inset-10 pointer-events-none z-0"
+      >
+        <div className="absolute inset-0 bg-black/50 z-10" />
+        <img src="/images/hero_bg.png" alt="Neural Core" className="w-full h-full object-cover" />
+      </motion.div>
+
       {/* dynamic grid lines */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
+      <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
         <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]" />
         <motion.div 
           className="absolute top-0 right-[33%] w-[2px] h-full bg-gradient-to-b from-transparent via-ant-cyan to-transparent opacity-50"

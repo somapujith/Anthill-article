@@ -9,7 +9,8 @@ const categories = [
     description: 'Large language models redefined human-machine communication. From GPT-3 to reasoning models, AI now understands context, nuance, and intent at near-human levels.',
     tags: ['ChatGPT', 'Claude', 'Gemini', 'o1 Reasoning'],
     stat: '175B → 2T+',
-    statLabel: 'Parameters (2020→2025)'
+    statLabel: 'Parameters (2020→2025)',
+    image: '/images/evol_nlp.png'
   },
   {
     number: '02',
@@ -18,7 +19,8 @@ const categories = [
     description: 'Image understanding and generation reached superhuman accuracy. Diffusion models produce photorealistic content at scale. Real-time detection reshapes industries.',
     tags: ['DALL-E 3', 'Stable Diffusion', 'Vision Transformers', 'Detection'],
     stat: '96.2%',
-    statLabel: 'ImageNet accuracy (2024)'
+    statLabel: 'ImageNet accuracy (2024)',
+    image: '/images/evol_vision.png'
   },
   {
     number: '03',
@@ -27,7 +29,8 @@ const categories = [
     description: 'AI agents make independent decisions across complex environments — self-driving vehicles, autonomous research assistants, and multi-agent coordination systems.',
     tags: ['Self-Driving', 'Robotics', 'AI Agents', 'Multi-Agent'],
     stat: '10M+',
-    statLabel: 'Autonomous miles driven'
+    statLabel: 'Autonomous miles driven',
+    image: '/images/evol_robotics.png'
   },
   {
     number: '04',
@@ -36,7 +39,8 @@ const categories = [
     description: 'Mathematical proofs, scientific discovery, and strategic planning become AI capabilities. Chain-of-thought enables complex multi-step problem solving with verifiable outputs.',
     tags: ['Math Proofs', 'Scientific Discovery', 'Planning', 'Causal Inference'],
     stat: '90th %ile',
-    statLabel: 'Bar exam performance (2024)'
+    statLabel: 'Bar exam performance (2024)',
+    image: '/images/evol_reasoning.png'
   },
 ]
 
@@ -75,15 +79,35 @@ export default function AIEvolution() {
             </div>
 
             {/* content panel */}
-            <div className="md:col-span-9 relative z-10">
+            <div className="md:col-span-9 relative z-10 group/panel overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="absolute inset-0 z-0"
+                >
+                  <div className="absolute inset-0 bg-black/70 z-10" />
+                  <motion.img 
+                    src={categories[active].image} 
+                    className="w-full h-full object-cover mix-blend-luminosity opacity-40 group-hover/panel:mix-blend-normal group-hover/panel:opacity-80 transition-all duration-700" 
+                    initial={{ scale: 1.05 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </motion.div>
+              </AnimatePresence>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active + 'content'}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className="h-full p-10 md:p-14 flex flex-col justify-between"
+                  className="h-full p-10 md:p-14 flex flex-col justify-between relative z-10"
                 >
                   <div>
                     <p className="text-[10px] font-bold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-ant-muted to-white/30 uppercase mb-6">{categories[active].number} / 04</p>

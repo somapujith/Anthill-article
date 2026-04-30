@@ -99,9 +99,24 @@ export default function Interactive() {
             {/* output */}
             <div className="md:col-span-7 bg-transparent p-10 md:p-14 relative overflow-hidden z-10 flex flex-col justify-center">
               {/* large bg level */}
-              <div className="absolute -right-10 -bottom-10 text-[20rem] font-bold text-white/[0.02] select-none pointer-events-none leading-none tracking-tighter">
+              <div className="absolute -right-10 -bottom-10 text-[20rem] font-bold text-white/[0.02] select-none pointer-events-none leading-none tracking-tighter z-0">
                 {level}
               </div>
+
+              {/* Output Background Image */}
+              <AnimatePresence>
+                {revealed && (
+                  <motion.img
+                    key={impact.tagRed ? 'pessimistic' : 'optimistic'}
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 0.25, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                    src={impact.tagRed ? "/images/forecast_pessimistic.png" : "/images/forecast_optimistic.png"}
+                    className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity z-0 pointer-events-none"
+                  />
+                )}
+              </AnimatePresence>
 
               <AnimatePresence mode="wait">
                 {!revealed ? (
