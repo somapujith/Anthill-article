@@ -38,7 +38,7 @@ export default function HumanIntervention() {
   return (
     <section className="bg-ant-black relative">
       <div className="px-8 md:px-16 pt-24 pb-16">
-        <SectionHeader index="03" title="Human Intervention" subtitle="Society's Response\nto AI Growth" description="How governments, researchers, and institutions shape AI's trajectory." />
+        <SectionHeader index="03" title="Human Intervention" subtitle={"Society's Response\nto AI Growth"} description="How governments, researchers, and institutions shape AI's trajectory." />
 
         {/* 3-column interactive cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-16 relative">

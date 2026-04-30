@@ -27,7 +27,7 @@ export default function Impact() {
   return (
     <section id="impact" className="bg-ant-black">
       <div className="px-8 md:px-16 pt-24 pb-16">
-        <SectionHeader index="06" title="Impact & Risks" subtitle="The Dual Nature\nof AI" description="Tremendous benefits and serious risks exist in the same system." />
+        <SectionHeader index="06" title="Impact & Risks" subtitle={"The Dual Nature\nof AI"} description="Tremendous benefits and serious risks exist in the same system." />
 
         {/* toggle */}
         <div className="flex gap-2 p-1.5 bg-[#000000]/80 backdrop-blur-xl border border-white/10 rounded-full mb-16 w-fit shadow-xl relative z-10">

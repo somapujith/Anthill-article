@@ -46,7 +46,7 @@ export default function AIEvolution() {
   return (
     <section id="evolution" className="bg-ant-black relative overflow-hidden">
       <div className="px-8 md:px-16 pt-24 pb-16 relative z-10">
-        <SectionHeader index="02" title="AI Evolution" subtitle="Four Pillars of\nAdvancement" description="The domains driving AI's exponential capability growth." />
+        <SectionHeader index="02" title="AI Evolution" subtitle={"Four Pillars of\nAdvancement"} description="The domains driving AI's exponential capability growth." />
 
         <div className="relative rounded-3xl p-[1px] overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-r from-ant-red/30 via-transparent to-ant-red/10 opacity-30 group-hover:opacity-60 transition-opacity duration-1000 animate-pulse" />

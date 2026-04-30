@@ -45,7 +45,7 @@ export default function DataViz() {
   return (
     <section className="bg-ant-black">
       <div className="px-8 md:px-16 pt-24 pb-16">
-        <SectionHeader index="04" title="Data" subtitle="Numbers Behind\nthe Story" description="Quantifying AI's exponential growth trajectory." />
+        <SectionHeader index="04" title="Data" subtitle={"Numbers Behind\nthe Story"} description="Quantifying AI's exponential growth trajectory." />
 
         <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
           {/* chart 1 - area */}
