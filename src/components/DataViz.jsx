@@ -43,7 +43,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 export default function DataViz() {
   return (
-    <section className="bg-ant-black">
+    <section id="data" className="bg-ant-black scroll-snap-section">
       <div className="px-8 md:px-16 pt-24 pb-16">
         <SectionHeader index="04" title="Data" subtitle={"Numbers Behind\nthe Story"} description="Quantifying AI's exponential growth trajectory." />
 

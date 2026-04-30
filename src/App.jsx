@@ -13,7 +13,7 @@ import NoiseBackground from './components/NoiseBackground'
 
 export default function App() {
   return (
-    <div className="bg-ant-black text-white font-archivo">
+    <div className="bg-ant-black text-white font-archivo scroll-container">
       <NoiseBackground />
       <ScrollProgress />
       <Hero />

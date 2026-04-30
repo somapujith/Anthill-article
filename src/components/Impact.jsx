@@ -25,7 +25,7 @@ export default function Impact() {
   const [hovered, setHovered] = useState(null)
 
   return (
-    <section id="impact" className="bg-ant-black">
+    <section id="impact" className="bg-ant-black scroll-snap-section">
       <div className="px-8 md:px-16 pt-24 pb-16">
         <SectionHeader index="06" title="Impact & Risks" subtitle={"The Dual Nature\nof AI"} description="Tremendous benefits and serious risks exist in the same system." />
 

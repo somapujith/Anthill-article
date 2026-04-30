@@ -36,7 +36,7 @@ export default function HumanIntervention() {
   const [showComparison, setShowComparison] = useState(false)
 
   return (
-    <section className="bg-ant-black relative">
+    <section id="intervention" className="bg-ant-black relative scroll-snap-section">
       <div className="px-8 md:px-16 pt-24 pb-16">
         <SectionHeader index="03" title="Human Intervention" subtitle={"Society's Response\nto AI Growth"} description="How governments, researchers, and institutions shape AI's trajectory." />
 

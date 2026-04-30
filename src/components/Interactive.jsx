@@ -22,7 +22,7 @@ export default function Interactive() {
   const impact = getImpact(level)
 
   return (
-    <section className="bg-ant-black">
+    <section id="simulation" className="bg-ant-black scroll-snap-section">
       <div className="px-8 md:px-16 pt-24 pb-16">
         <SectionHeader index="07" title="Simulation" subtitle="What If?" description="Adjust the governance level — model different AI futures and their projected consequences." />
 

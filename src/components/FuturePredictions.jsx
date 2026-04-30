@@ -21,7 +21,7 @@ export default function FuturePredictions() {
   const [selectedScenario, setSelectedScenario] = useState('Realistic')
 
   return (
-    <section className="bg-ant-black">
+    <section id="predictions" className="bg-ant-black scroll-snap-section">
       <div className="px-8 md:px-16 pt-24 pb-16">
         <SectionHeader index="05" title="Future Predictions" subtitle="What Comes Next" description="Key milestones projected between 2025 and 2030." />
 

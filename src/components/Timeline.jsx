@@ -21,7 +21,7 @@ export default function Timeline() {
   const idx = timelineData.findIndex(d => d.year === selected)
 
   return (
-    <section id="timeline" className="bg-ant-black relative overflow-hidden">
+    <section id="timeline" className="bg-ant-black relative overflow-hidden scroll-snap-section">
       {/* large year watermark */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[20vw] font-semibold text-white/[0.02] select-none pointer-events-none leading-none pr-8">
         {selected}
