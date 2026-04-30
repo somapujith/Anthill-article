@@ -4,6 +4,7 @@ export default function NoiseBackground() {
       <svg className="w-full h-full opacity-50">
         <filter id="noiseFilter">
           <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+          <feColorMatrix type="saturate" values="0" />
         </filter>
         <rect width="100%" height="100%" filter="url(#noiseFilter)" />
       </svg>
